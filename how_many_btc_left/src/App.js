@@ -15,7 +15,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div style={{ zIndex: 10, backgroundColor: 'red' }}>
       <h1>{loading ? '' : `${coin.name}`}</h1>
       {loading ? (
         <strong>Loading...</strong>
