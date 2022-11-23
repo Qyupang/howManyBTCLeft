@@ -328,7 +328,7 @@ const Canvas = () => {
       <StyledCanvas id="canvasTop" ref={canvasRef} />
       <ImageCanvas
         ref={canvasRefImg}
-        style={{ top: windowSize.height / 2.2, left: windowSize.width / 2.5 }}
+        style={{ top: windowSize.height / 2.2, left: windowSize.width / 2.8 }}
         onClick={() => setImgClicked(true)}
       />
     </div>
