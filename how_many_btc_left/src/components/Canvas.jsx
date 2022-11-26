@@ -11,12 +11,9 @@ let StyledCanvas = styled.canvas`
 
 let ImageCanvas = styled.canvas`
   position: absolute;
-  top: 300px;
-  left: 500px;
 `;
 
-const Canvas = () => {
-  const [imgClicked, setImgClicked] = useState(false);
+const Canvas = ({ setImgClicked }) => {
   const canvasRef = useRef(null); // useRef 사용
   const canvasRefImg = useRef(null);
   const contextRef = useRef(null); // 캔버스의 드로잉 컨텍스트를 참조
@@ -321,14 +318,16 @@ const Canvas = () => {
     setCtx(contextRef.current);
   }, [windowSize]);
 
-  return imgClicked ? (
-    <App />
-  ) : (
+  return (
     <div style={{ position: 'relative' }}>
       <StyledCanvas id="canvasTop" ref={canvasRef} />
       <ImageCanvas
         ref={canvasRefImg}
-        style={{ top: windowSize.height / 2.2, left: windowSize.width / 2.8 }}
+        style={{
+          top: windowSize.height / 2,
+          left: windowSize.width / 2,
+          transform: `translate(-50%, -50%)`,
+        }}
         onClick={() => setImgClicked(true)}
       />
     </div>
