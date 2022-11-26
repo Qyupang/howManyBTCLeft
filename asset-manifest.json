@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/howManyBTCLeft/static/css/main.a5fa0d01.css",
-    "main.js": "/howManyBTCLeft/static/js/main.c0f5e4ff.js",
+    "main.js": "/howManyBTCLeft/static/js/main.c889c4b5.js",
     "index.html": "/howManyBTCLeft/index.html",
     "main.a5fa0d01.css.map": "/howManyBTCLeft/static/css/main.a5fa0d01.css.map",
-    "main.c0f5e4ff.js.map": "/howManyBTCLeft/static/js/main.c0f5e4ff.js.map"
+    "main.c889c4b5.js.map": "/howManyBTCLeft/static/js/main.c889c4b5.js.map"
   },
   "entrypoints": [
     "static/css/main.a5fa0d01.css",
-    "static/js/main.c0f5e4ff.js"
+    "static/js/main.c889c4b5.js"
   ]
 }
