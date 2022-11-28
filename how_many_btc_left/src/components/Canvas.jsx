@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { debounce } from 'lodash';
 import App from '../App';
+import pills from '../img/pills.png';
 
 let StyledCanvas = styled.canvas`
   position: absolute;
@@ -117,7 +118,7 @@ const Canvas = ({ setImgClicked }) => {
     const context = canvas.getContext('2d');
     const contextImg = imgCanvas.getContext('2d');
     let image = new Image();
-    image.src = 'img/redPill.png';
+    image.src = pills;
 
     class FallingChar {
       constructor(x, y) {
