@@ -2,7 +2,7 @@
 
 > Open API를 활용한 비트코인 채굴량과 남은 수량을 차트를 이용하여 표현한 웹 사이트입니다
 
-![구현한 화면](./how_many_btc_left/public/img/page.gif)
+![구현한 화면](./how_many_btc_left/src/img/howManyBTC.gif)
 
 ## 목표
 
