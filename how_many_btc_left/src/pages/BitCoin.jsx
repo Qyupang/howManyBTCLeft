@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import Loading from './Loading';
 import styled from 'styled-components';
 import Chart from 'chart.js/auto';
 import { Pie } from 'react-chartjs-2';
+import './bitcoin.scss';
 
 const ChartContainer = styled.div`
   height: 100%;
@@ -14,12 +16,13 @@ const ChartContainer = styled.div`
   font-weight: 600;
 
   h1 {
-    font-size: 150px;
+    font-size: 100px;
     color: #f3931b;
-    margin-bottom: 40px;
+    margin-top: 50px;
   }
   h2 {
-    font-size: 22px;
+    font-size: 20px;
+    margin-bottom: 8px;
   }
   h3 {
     font-size: 20px;
@@ -46,7 +49,6 @@ const BitCoin = () => {
       }
       if (parseInt(seconds) === 0) {
         if (parseInt(minutes) === 0) {
-          // clearInterval(countdown);
           setMinutes(10);
           setSeconds(0);
         } else {
@@ -64,7 +66,7 @@ const BitCoin = () => {
         .then((response) => response.json())
         .then((json) => {
           setCoin(json);
-          setLoading(false);
+          setTimeout(() => setLoading(false), 1500);
           return json;
         })
         .then((coin) => console.log(coin));
@@ -101,19 +103,20 @@ const BitCoin = () => {
 
   return (
     <ChartContainer>
-      <h1>{loading ? '' : `${coin.name}`}</h1>
+      <h1 data-text="Bitcoin">{loading ? '' : `${coin.name}`}</h1>
       {loading ? (
-        <strong>Loading...</strong>
+        // <strong>Loading...</strong>
+        <Loading />
       ) : (
         <div className="chart-container">
           <div style={{ color: '#DD280A', fontSize: '40px' }}>
-            Left: {formatter.format(coin.max_supply - coin.total_supply)}
+            Left : {formatter.format(coin.max_supply - coin.total_supply)}
           </div>
           <div style={{ color: '#00FF41' }}>
-            Max Supply: {formatter.format(coin.max_supply)}
+            Max Supply : {formatter.format(coin.max_supply)}
           </div>
           <div style={{ color: '#008F11', marginBottom: '30px' }}>
-            Total Supply:{formatter.format(coin.total_supply)}
+            Total Supply :{formatter.format(coin.total_supply)}
           </div>
           <h3>
             {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
@@ -125,10 +128,10 @@ const BitCoin = () => {
             {/* ({Math.round(100 - (coin.total_supply / coin.max_supply) * 100)} %) */}
           </div>
           <h2 style={{ color: '#00FF41' }}>
-            start date: {startDate.toLocaleDateString('ko')}{' '}
+            start date : {startDate.toLocaleDateString('ko')}{' '}
           </h2>
           <h2 style={{ color: '#008F11', marginBottom: '20px' }}>
-            current date: {currentDate.toLocaleDateString('ko')}
+            current date : {currentDate.toLocaleDateString('ko')}
           </h2>
         </div>
       )}
