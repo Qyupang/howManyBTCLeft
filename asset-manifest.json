@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/howManyBTCLeft/static/css/main.a5fa0d01.css",
-    "main.js": "/howManyBTCLeft/static/js/main.dc15533e.js",
+    "main.css": "/howManyBTCLeft/static/css/main.d2f7c3cb.css",
+    "main.js": "/howManyBTCLeft/static/js/main.303d43ee.js",
+    "static/media/pills.png": "/howManyBTCLeft/static/media/pills.531cfeb35ba9591c07bf.png",
     "index.html": "/howManyBTCLeft/index.html",
-    "main.a5fa0d01.css.map": "/howManyBTCLeft/static/css/main.a5fa0d01.css.map",
-    "main.dc15533e.js.map": "/howManyBTCLeft/static/js/main.dc15533e.js.map"
+    "main.d2f7c3cb.css.map": "/howManyBTCLeft/static/css/main.d2f7c3cb.css.map",
+    "main.303d43ee.js.map": "/howManyBTCLeft/static/js/main.303d43ee.js.map"
   },
   "entrypoints": [
-    "static/css/main.a5fa0d01.css",
-    "static/js/main.dc15533e.js"
+    "static/css/main.d2f7c3cb.css",
+    "static/js/main.303d43ee.js"
   ]
 }
