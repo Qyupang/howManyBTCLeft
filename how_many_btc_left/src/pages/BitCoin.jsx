@@ -66,7 +66,7 @@ const BitCoin = () => {
         .then((response) => response.json())
         .then((json) => {
           setCoin(json);
-          setTimeout(() => setLoading(false), 1500);
+          setTimeout(() => setLoading(false), 1000);
           return json;
         })
         .then((coin) => console.log(coin));
@@ -83,7 +83,8 @@ const BitCoin = () => {
       {
         data: [],
         backgroundColor: ['#008F11', '#003B00'],
-        borderColor: '#333',
+        borderColor: 'white',
+        borderWidth: 1,
       },
     ],
   };
