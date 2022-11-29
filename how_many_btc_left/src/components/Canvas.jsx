@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { debounce } from 'lodash';
-import App from '../App';
-import pills from '../img/pills.png';
+import redPill from '../img/redPill.PNG';
+import bluePill from '../img/bluePill.PNG';
 
 let StyledCanvas = styled.canvas`
   position: absolute;
@@ -17,6 +17,7 @@ let ImageCanvas = styled.canvas`
 const Canvas = ({ setImgClicked }) => {
   const canvasRef = useRef(null); // useRef 사용
   const canvasRefImg = useRef(null);
+  const canvasRefImg2 = useRef(null);
   const contextRef = useRef(null); // 캔버스의 드로잉 컨텍스트를 참조
 
   const [ctx, setCtx] = useState(); // 캔버스의 드로잉 컨텍스트
@@ -36,6 +37,7 @@ const Canvas = ({ setImgClicked }) => {
     window.addEventListener('resize', handleResize);
     const canvas = canvasRef.current;
     const imgCanvas = canvasRefImg.current;
+    const imgCanvas2 = canvasRefImg2.current;
 
     let cw = windowSize.width;
     let ch = windowSize.height;
@@ -115,10 +117,16 @@ const Canvas = ({ setImgClicked }) => {
     canvas.width = cw;
     canvas.height = ch;
 
+    imgCanvas.width = 150;
+    imgCanvas2.width = 150;
+
     const context = canvas.getContext('2d');
     const contextImg = imgCanvas.getContext('2d');
+    const contextImg2 = imgCanvas2.getContext('2d');
     let image = new Image();
-    image.src = pills;
+    let image2 = new Image();
+    image.src = redPill;
+    image2.src = bluePill;
 
     class FallingChar {
       constructor(x, y) {
@@ -170,9 +178,11 @@ const Canvas = ({ setImgClicked }) => {
     update();
 
     image.onload = function () {
-      contextImg.drawImage(image, 0, 0, 300, 150);
+      contextImg.drawImage(image, 0, 0, 140, 140);
     };
-
+    image2.onload = function () {
+      contextImg2.drawImage(image2, 0, 0, 140, 120);
+    };
     contextRef.current = context;
 
     setCtx(contextRef.current);
@@ -320,16 +330,25 @@ const Canvas = ({ setImgClicked }) => {
   }, [windowSize]);
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div>
       <StyledCanvas id="canvasTop" ref={canvasRef} />
       <ImageCanvas
         ref={canvasRefImg}
         style={{
-          top: windowSize.height / 2,
-          left: windowSize.width / 2,
-          transform: `translate(-50%, -50%)`,
+          top: '50%',
+          left: '50%',
+          transform: `translate(-100%, -50%)`,
         }}
-        onClick={() => setImgClicked(true)}
+        onClick={() => setImgClicked(1)}
+      />
+      <ImageCanvas
+        ref={canvasRefImg2}
+        style={{
+          top: '52%',
+          left: '50%',
+          transform: `translate(10%, -40%)`,
+        }}
+        onClick={() => setImgClicked(2)}
       />
     </div>
   );
