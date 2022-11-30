@@ -205,9 +205,9 @@ const Canvas = ({ setImgClicked }) => {
       setTimeout(() => {
         setTimeouted(true);
       }, 1000);
+      setTimeout(() => setImgClicked(1), 5000);
     }
-    setTimeout(() => setImgClicked(1), 5000);
-  }, [clicked, animation]);
+  }, [animation]);
 
   return (
     <div>
