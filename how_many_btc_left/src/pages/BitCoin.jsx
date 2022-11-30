@@ -3,7 +3,7 @@ import Loading from './Loading';
 import styled from 'styled-components';
 import Chart from 'chart.js/auto';
 import { Pie } from 'react-chartjs-2';
-import './bitcoin.scss';
+import '../styles/bitcoin.scss';
 
 const ChartContainer = styled.div`
   height: 100%;
@@ -66,7 +66,7 @@ const BitCoin = () => {
         .then((response) => response.json())
         .then((json) => {
           setCoin(json);
-          setTimeout(() => setLoading(false), 1000);
+          setTimeout(() => setLoading(false), 2000);
           return json;
         })
         .then((coin) => console.log(coin));
@@ -106,7 +106,6 @@ const BitCoin = () => {
     <ChartContainer>
       <h1 data-text="Bitcoin">{loading ? '' : `${coin.name}`}</h1>
       {loading ? (
-        // <strong>Loading...</strong>
         <Loading />
       ) : (
         <div className="chart-container">

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { debounce } from 'lodash';
 
 let Canvas = styled.canvas`
+  background-color: black;
   position: absolute;
   top: 0;
   left: 0;
@@ -46,13 +47,13 @@ const Loading = () => {
     let context;
     let tempx, tempy, tempz;
     let dots = [];
-    let dotsLength = (cw + ch) / 20;
+    let dotsLength = (cw + ch) / 1;
 
     function setSize() {
       canvas.width = cw;
       canvas.height = ch;
       initDots();
-      context.fillStyle = '#ffffff';
+      context.fillStyle = 'silver';
       if (cw < 800) {
         context.globalAlpha = 0.3;
       } else {
@@ -62,7 +63,7 @@ const Loading = () => {
 
     function initDots() {
       dots = [];
-      dotsLength = (cw + ch) / 20;
+      dotsLength = (cw + ch) / 1;
       let x, y, z;
       for (let i = 0; i < dotsLength; i++) {
         x = Math.random() * cw - cw / 2;
@@ -102,24 +103,9 @@ const Loading = () => {
 
     // addEventListener('resize', setSize);
     init();
-  });
+  }, []);
 
-  return (
-    // <div>
-    //   <h1
-    //     data-text="loading"
-    //     style={{
-    //       position: 'absolute',
-    //       top: window.ch / 2,
-    //       left: window.cw / 2,
-    //       transform: `translate(-50%, -50%)`,
-    //     }}
-    //   >
-    //     loading...
-    //   </h1>
-    // </div>
-    <Canvas ref={canvasRef} />
-  );
+  return <Canvas ref={canvasRef} />;
 };
 
 export default Loading;

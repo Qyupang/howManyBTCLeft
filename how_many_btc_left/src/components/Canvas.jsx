@@ -33,6 +33,10 @@ const Canvas = ({ setImgClicked }) => {
     });
   }, 1000);
 
+  const [animation, setAnimation] = useState();
+  const [animation2, setAnimation2] = useState();
+  const [clicked, setClicked] = useState(false);
+
   useEffect(() => {
     window.addEventListener('resize', handleResize);
     const canvas = canvasRef.current;
@@ -171,7 +175,7 @@ const Canvas = ({ setImgClicked }) => {
       for (let i = 0; i < fallingCharArr.length && frames % 2 === 0; i++) {
         fallingCharArr[i].draw(context);
       }
-      requestAnimationFrame(update);
+      setAnimation(requestAnimationFrame(update));
       frames++;
     };
 
@@ -318,7 +322,7 @@ const Canvas = ({ setImgClicked }) => {
       for (let i = 0; i < fallingCharArr.length && frames % 2 === 0; i++) {
         fallingCharArr[i].draw(context);
       }
-      requestAnimationFrame(update);
+      setAnimation2(requestAnimationFrame(update));
       frames++;
     };
 
@@ -328,6 +332,14 @@ const Canvas = ({ setImgClicked }) => {
 
     setCtx(contextRef.current);
   }, [windowSize]);
+
+  useEffect(() => {
+    if (clicked) {
+      cancelAnimationFrame(animation);
+      cancelAnimationFrame(animation2);
+      setTimeout(() => setImgClicked(1), 1000);
+    }
+  }, [animation]);
 
   return (
     <div>
@@ -339,7 +351,9 @@ const Canvas = ({ setImgClicked }) => {
           left: '50%',
           transform: `translate(-100%, -50%)`,
         }}
-        onClick={() => setImgClicked(1)}
+        onClick={() => {
+          setClicked(true);
+        }}
       />
       <ImageCanvas
         ref={canvasRefImg2}
