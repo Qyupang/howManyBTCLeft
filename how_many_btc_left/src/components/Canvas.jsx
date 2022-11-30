@@ -31,11 +31,11 @@ const Canvas = ({ setImgClicked }) => {
       width: window.innerWidth,
       height: window.innerHeight,
     });
-  }, 1000);
+  }, 300);
 
   const [animation, setAnimation] = useState();
-  const [animation2, setAnimation2] = useState();
   const [clicked, setClicked] = useState(false);
+  const [timeOuted, setTimeouted] = useState(false);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -112,9 +112,9 @@ const Canvas = ({ setImgClicked }) => {
     ];
 
     // 한번에 생성되는 흘러내리는 문자열 개수
-    let maxCharCount = 100;
+    let maxCharCount = 70;
     let fallingCharArr = [];
-    let fontSize = 15;
+    let fontSize = 16;
     let maxColumns = cw / fontSize;
     let frames = 0;
 
@@ -150,7 +150,7 @@ const Canvas = ({ setImgClicked }) => {
         // 폰트 설정
         context.font = fontSize + 'px san-serif';
         // 텍스트 그리기
-        context.fillText(this.value, this.x, this.y);
+        context.fillText(this.value, this.x, clicked ? ch - this.y : this.y);
         this.y += this.speed;
 
         if (this.y > ch) {
@@ -179,7 +179,7 @@ const Canvas = ({ setImgClicked }) => {
       frames++;
     };
 
-    update();
+    setAnimation(update());
 
     image.onload = function () {
       contextImg.drawImage(image, 0, 0, 140, 140);
@@ -190,156 +190,24 @@ const Canvas = ({ setImgClicked }) => {
     contextRef.current = context;
 
     setCtx(contextRef.current);
+
     return () => {
       // cleanup
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    const canvas = canvasRef.current;
-
-    let cw = windowSize.width;
-    let ch = windowSize.height;
-
-    // 화면에 출력될 문자 리스트
-    let charArr = [
-      'a',
-      'b',
-      'c',
-      'd',
-      'e',
-      'f',
-      'g',
-      'h',
-      'i',
-      'j',
-      'k',
-      'l',
-      'm',
-      'n',
-      'o',
-      'p',
-      'q',
-      'r',
-      's',
-      't',
-      'u',
-      'v',
-      'w',
-      'x',
-      'y',
-      'z',
-      '1',
-      '2',
-      '3',
-      '4',
-      '5',
-      '6',
-      '7',
-      '8',
-      'А',
-      'В',
-      'Г',
-      'Д',
-      'Є',
-      'Ѕ',
-      'З',
-      'И',
-      'Ѳ',
-      'І',
-      'К',
-      'Л',
-      'М',
-      'Н',
-      'Ѯ',
-      'Ѻ',
-      'П',
-      'Ч',
-      'Р',
-      'С',
-      'Т',
-      'Ѵ',
-      'Ф',
-      'Х',
-      'Ѱ',
-      'Ѿ',
-      'Ц',
-    ];
-
-    // 한번에 생성되는 흘러내리는 문자열 개수
-    let maxCharCount = 100;
-    let fallingCharArr = [];
-    let fontSize = 15;
-    let maxColumns = cw / fontSize;
-    let frames = 0;
-
-    canvas.width = cw;
-    canvas.height = ch;
-
-    const context = canvas.getContext('2d');
-    class FallingChar {
-      constructor(x, y) {
-        this.x = x;
-        this.y = y;
-      }
-
-      draw(context) {
-        this.value =
-          charArr[
-            Math.floor(Math.random() * (charArr.length - 1))
-          ].toUpperCase();
-        this.speed = (Math.random() * fontSize * -1) / 4 + (fontSize * 3) / 4;
-
-        // 글작 색상
-        context.fillStyle = 'rgba(0,255,0)';
-        // 폰트 설정
-        context.font = fontSize + 'px san-serif';
-        // 텍스트 그리기
-        context.fillText(this.value, this.x, this.y);
-        this.y += this.speed;
-
-        if (this.y > ch) {
-          this.y = (Math.random() * ch) / 2 - 50;
-          this.x = Math.floor(Math.random() * maxColumns) * fontSize;
-          this.speed = (-Math.random() * fontSize * 3) / 4 + (fontSize * 3) / 4;
-        }
-      }
-    }
-
-    let update = () => {
-      if (fallingCharArr.length < maxCharCount) {
-        let fallingChar = new FallingChar(
-          Math.floor(Math.random() * maxColumns) * fontSize,
-          (Math.random() * ch) / 2 - 50
-        );
-        fallingCharArr.push(fallingChar);
-      }
-      // 배경색
-      context.fillStyle = 'rgba(0,0,0,0.05)';
-      context.fillRect(0, 0, cw, ch);
-      for (let i = 0; i < fallingCharArr.length && frames % 2 === 0; i++) {
-        fallingCharArr[i].draw(context);
-      }
-      setAnimation2(requestAnimationFrame(update));
-      frames++;
-    };
-
-    update();
-
-    contextRef.current = context;
-
-    setCtx(contextRef.current);
-  }, [windowSize]);
+  }, [windowSize, timeOuted]);
 
   useEffect(() => {
     if (clicked) {
-      cancelAnimationFrame(animation);
-      cancelAnimationFrame(animation2);
-      setTimeout(() => setImgClicked(1), 1000);
+      if (!timeOuted) {
+        cancelAnimationFrame(animation);
+      }
+      setTimeout(() => {
+        setTimeouted(true);
+      }, 1000);
     }
-  }, [animation]);
+    setTimeout(() => setImgClicked(1), 5000);
+  }, [clicked, animation]);
 
   return (
     <div>
