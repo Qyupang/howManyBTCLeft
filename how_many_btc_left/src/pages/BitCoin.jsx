@@ -16,20 +16,20 @@ const ChartContainer = styled.div`
   font-weight: 600;
 
   h1 {
-    font-size: 100px;
+    font-size: 6.25rem;
     color: #f3931b;
-    margin-top: 50px;
+    margin-top: 3.125rem;
   }
   h2 {
-    font-size: 20px;
-    margin-bottom: 8px;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
   }
   h3 {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
   div {
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 1.25rem;
+    margin-bottom: 2.1875rem;
   }
 `;
 
