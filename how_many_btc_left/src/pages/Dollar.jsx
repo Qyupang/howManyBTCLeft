@@ -78,7 +78,7 @@ const Dollar = () => {
         Dollar
       </p>
       <h2 style={{ fontSize: '40px', color: 'white', textAlign: 'center' }}>
-        Max Supply :{' '}
+        Max Supply :
         <span style={{ fontSize: '60px', color: 'white', textAlign: 'center' }}>
           ∞
         </span>

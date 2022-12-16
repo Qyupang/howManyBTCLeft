@@ -125,7 +125,6 @@ const BitCoin = () => {
           <div style={{ marginTop: '1.25rem' }}>
             {formatter_compact.format(coin.total_supply)} /{' '}
             {formatter_compact.format(coin.max_supply)}
-            {/* ({Math.round(100 - (coin.total_supply / coin.max_supply) * 100)} %) */}
           </div>
           <h2 style={{ color: '#00FF41' }}>
             start date : {startDate.toLocaleDateString('ko')}{' '}

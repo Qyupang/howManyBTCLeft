@@ -47,7 +47,7 @@ const Loading = () => {
     let context;
     let tempx, tempy, tempz;
     let dots = [];
-    let dotsLength = (cw + ch) / 1;
+    let dotsLength = cw + ch;
 
     function setSize() {
       canvas.width = cw;
@@ -79,6 +79,7 @@ const Loading = () => {
       x2d = dot.x * scale + cw / 2;
       y2d = dot.y * scale + ch / 2;
       context.fillRect(x2d, y2d, scale * 4, scale * 3);
+      // context.fillText('$', x2d, y2d, scale * 4, scale * 3);
     }
 
     function render() {
@@ -101,7 +102,6 @@ const Loading = () => {
       render();
     }
 
-    // addEventListener('resize', setSize);
     init();
   }, []);
 
